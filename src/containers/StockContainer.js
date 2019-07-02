@@ -3,13 +3,14 @@ import Stock from "../components/Stock";
 
 class StockContainer extends Component {
   render() {
+    let { stocks, editPortfolioStatus} = this.props
     return (
       <div>
         <h2>Stocks</h2>
-        {this.props.stocks.map(stock => (
+        {stocks.map(stock => (
           <Stock
             stock={stock}
-            editPortfolioStatus={this.props.editPortfolioStatus}
+            editPortfolioStatus={editPortfolioStatus}
           />
         ))}
       </div>

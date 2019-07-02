@@ -5,24 +5,25 @@ import SearchBar from "../components/SearchBar";
 
 class MainContainer extends Component {
   render() {
+    let {sortFunction, filterStocks, editPortfolioStatus, portfolio, stocks} = this.props
     return (
       <div>
         <SearchBar
-          sortFunction={this.props.sortFunction}
-          filterStocks={this.props.filterStocks}
+          sortFunction={sortFunction}
+          filterStocks={filterStocks}
         />
 
         <div className="row">
           <div className="col-8">
             <StockContainer
-              stocks={this.props.stocks}
-              editPortfolioStatus={this.props.editPortfolioStatus}
+              stocks={stocks}
+              editPortfolioStatus={editPortfolioStatus}
             />
           </div>
           <div className="col-4">
             <PortfolioContainer
-              portfolio={this.props.portfolio}
-              editPortfolioStatus={this.props.editPortfolioStatus}
+              portfolio={portfolio}
+              editPortfolioStatus={editPortfolioStatus}
             />
           </div>
         </div>

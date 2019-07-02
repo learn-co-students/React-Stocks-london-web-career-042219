@@ -25,7 +25,7 @@ class App extends Component {
 
   editStocksToRender = () => {
     let stocks = this.state.stocks;
-      if (this.state.sort !== false) {
+    if (this.state.sort !== false) {
       stocks = stocks.sort((a, b) => {
         if (a[this.state.sort] < b[this.state.sort]) {
           return -1;
@@ -36,8 +36,8 @@ class App extends Component {
         return 0;
       });
     }
-    if (this.state.filter !== "All") { 
-      stocks = stocks.filter(stock => stock.type === this.state.filter)
+    if (this.state.filter !== "All") {
+      stocks = stocks.filter(stock => stock.type === this.state.filter);
     }
     return stocks;
   };
@@ -47,15 +47,10 @@ class App extends Component {
     this.editStocksToRender();
   };
 
-  // sortByTicker = () => {
-  //   this.setState({ sortTicker: !this.state.sortTicker });
-  //   this.editStocksToRender();
-  // };
-
-  filterStocks = event => { 
-    this.setState({ filter: event.target.value })
-    this.editStocksToRender
-  }
+  filterStocks = e => {
+    this.setState({ filter: e.target.value });
+    this.editStocksToRender();
+  };
 
   render() {
     return (
