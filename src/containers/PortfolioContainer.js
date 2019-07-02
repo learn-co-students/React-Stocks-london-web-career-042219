@@ -5,12 +5,14 @@ class PortfolioContainer extends Component {
 
   render() {
     return (
-      <div>
-        <h2>My Portfolio</h2>
-          {
-            //render your portfolio stocks here
-          }
-      </div>
+		<div>
+			<h2>My Portfolio</h2>
+			{
+				this.props.stocks.map((stock, i) => {
+					return <Stock data={stock} key={i} action={this.props.sellStock} />
+				})
+			}
+		</div>
     );
   }
 
