@@ -6,6 +6,7 @@ const PortfolioStock = props => (
       <div className="card-body" onClick={() => props.sellStock(props.stock)}>
         <h5 className="card-title">{props.stock.name}</h5>
         <p className="card-text">{props.stock.price}</p>
+        <p className="card-text">Shares: {props.stock.qty}</p>
       </div>
     </div>
   </div>

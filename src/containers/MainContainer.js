@@ -15,19 +15,34 @@ class MainContainer extends Component {
     this.fetchStocks();
   }
 
-  buyStock = id => {
-    const targetStock = this.state.stocks.find(stock => stock.id === id);
-    this.setState({ portfolio: [...this.state.portfolio, targetStock] });
+  buyStock = targetStock => {
+    const index = this.state.portfolio.findIndex(
+      stock => stock.id === targetStock.id
+    );
+    const newPortfolio = this.state.portfolio;
+
+    if (index >= 0) {
+      newPortfolio[index].qty += 1;
+      this.setState({
+        portfolio: newPortfolio
+      });
+    } else {
+      newPortfolio.push(Object.assign(targetStock, { qty: 1 }));
+      this.setState({
+        portfolio: newPortfolio
+      });
+    }
   };
 
-  sellStock = stock => {
+  sellStock = targetStock => {
     let newPortfolio = this.state.portfolio;
-
-    if (this.state.portfolio.length > 1) {
-      const targetStockIndex = this.state.stocks.indexOf(stock);
-      newPortfolio.splice(targetStockIndex, 1);
-    } else {
+    const index = newPortfolio.findIndex(stock => stock.id === targetStock.id);
+    if (newPortfolio.length === 1 && newPortfolio[index].qty === 1) {
       newPortfolio = [];
+    } else if (newPortfolio[index].qty === 1) {
+      newPortfolio.splice(index, 1);
+    } else {
+      newPortfolio[index].qty -= 1;
     }
     this.setState({ portfolio: newPortfolio });
   };
